@@ -1,0 +1,27 @@
+{
+  "name": "scraper",
+  "version": "1.0.0",
+  "description": "Scraper for Affiliates Connect Module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ankitjain28may/scraping-using-node.git"
+  },
+  "author": "Ankit Jain <ankitjain28may77@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ankitjain28may/scraping-using-node/issues"
+  },
+  "homepage": "https://github.com/ankitjain28may/scraping-using-node#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cheerio": "^1.0.0-rc.2",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "request": "^2.87.0",
+    "request-promise": "^4.2.2"
+  }
+}
