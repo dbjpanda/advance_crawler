@@ -1,6 +1,6 @@
 const cheerio = require('cheerio');
 
-getLinks = (html, context, linkSelector, breakInParts, noOfParts) => {
+getLinks = (html, context, linkSelector, breakInParts, noOfParts, baseUrl) => {
   let selector = context + " " + linkSelector;
   let links = [];
 
@@ -11,6 +11,9 @@ getLinks = (html, context, linkSelector, breakInParts, noOfParts) => {
         return;
       } else {
         link = $(elem).attr('href');
+        if (baseUrl != "") {
+          link = baseUrl + link;
+        }
         links.push(link);
       }
     });

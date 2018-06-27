@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const static = require('./routes/static.route');
+const dynamic = require('./routes/dynamic.route');
 const app = express();
 const port = process.env.PORT || 9000;
 
@@ -12,6 +13,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/get-static', static);
+app.post('/get-dynamic', dynamic);
 
 app.listen(port);
 console.log("Server started at port " + port);

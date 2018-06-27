@@ -32,7 +32,7 @@ router.post('/get-static', async (req, res) => {
       });
     }
 
-    links = getLinks(results.response.body, context, linkSelector, breakInParts, noOfParts);
+    links = getLinks(results.response.body, context, linkSelector, breakInParts, noOfParts, baseUrl);
     console.log(links);
     // Inner Fetching Check
     if (innerFeedsScraper) {
