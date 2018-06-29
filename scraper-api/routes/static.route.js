@@ -6,7 +6,7 @@ const router = express.Router();
 router.post('/get-static', async (req, res) => {
 
   let url = req.body.url;
-  let {context, link_selector: linkSelector, inner_page_selector: innerPageSelector, break_in_parts: breakInParts, no_of_parts: noOfParts, left_html: leftHtml, inner_feeds_scraper: innerFeedsScraper} = req.body.options;
+  let {context, link_selector: linkSelector, inner_page_selector: innerPageSelector, break_in_parts: breakInParts, no_of_parts: noOfParts, left_html: leftHtml, inner_feeds_scraper: innerFeedsScraper, base_url: baseUrl} = req.body.options;
 
   let results = {
     'status': '',
