@@ -1,10 +1,9 @@
 version: "3"
 
 services:
-
   node:
     container_name: node
-    image: node:9-alpine
+    image: node:${NODE_VERSION}-alpine
     ports:
       - 9000:9000
     volumes:
