@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+
+  node:
+    container_name: node
+    image: node:9-alpine
+    ports:
+      - 9000:9000
+    volumes:
+      - ./:/app:cached
+    working_dir: /app
+    environment:
+      - NODE_ENV:${NODE_ENV}
+    command: npm install
