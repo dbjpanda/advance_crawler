@@ -11,4 +11,9 @@ services:
     working_dir: /app
     environment:
       - NODE_ENV:${NODE_ENV}
-    command: npm install
+    command:
+      - sh
+      - -c
+      - |
+        npm install
+        npm start
