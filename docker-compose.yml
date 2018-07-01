@@ -13,4 +13,3 @@ services:
     environment:
       PORT: ${PORT}
     command: [sh, -c, "npm install & pm2-runtime process.json"]
-    restart: always
