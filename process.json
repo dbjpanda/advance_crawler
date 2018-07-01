@@ -1,0 +1,15 @@
+{
+  "apps" : [{
+    "name"        : "scraper",
+    "script"      : "index.js",
+    "env": {
+      "DISPLAY": ":99"
+    }
+  },
+  {
+    "name"        : "Xvfb",
+    "interpreter" : "none",
+    "script"      : "Xvfb",
+    "args"        : ":99"
+  }]
+}

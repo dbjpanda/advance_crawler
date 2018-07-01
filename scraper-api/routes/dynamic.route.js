@@ -4,9 +4,9 @@ const { getLinks, appendInnerPage } = require('../common.js');
 const router = express.Router();
 
 const config = {
-  show: process.env.NIGHTMARE_SHOW || false,
+  show: process.env.NIGHTMARE_SHOW  === "true" || false,
   webPreferences: {
-    images: process.env.NIGHTMARE_IMAGES || false,
+    images: process.env.NIGHTMARE_IMAGES  === "true" || false,
   }
 }
 
@@ -38,6 +38,8 @@ router.post('/get-dynamic', async (req, res) => {
         .end()
       .then(async (response) => {
         results.response.body = response;
+      }).catch(err => {
+        console.log(err);
       });
     }
 
