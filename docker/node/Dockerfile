@@ -21,12 +21,7 @@ RUN apt-get update && apt-get install -y \
   libxss1 \
   libnss3-dev \
   gcc-multilib \
-  g++-multilib && \
-  rm -rf /var/lib/apt/lists/* && \
-  find /usr/share/doc -depth -type f ! -name copyright | xargs rm || true && \
-  find /usr/share/doc -empty | xargs rmdir || true && \
-  rm -rf /usr/share/man/* /usr/share/groff/* /usr/share/info/* && \
-  rm -rf /usr/share/lintian/* /usr/share/linda/* /var/cache/man/*
+  g++-multilib
 
 # Install PM2
 RUN npm install -g pm2
