@@ -12,4 +12,4 @@ services:
     working_dir: /app
     environment:
       PORT: ${PORT}
-    command: [sh, -c, "npm install & pm2-runtime process.json"]
+    command: [sh, -c, "npm install && pm2-runtime process.json"]
