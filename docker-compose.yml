@@ -3,17 +3,13 @@ version: "3"
 services:
   node:
     container_name: node
-    image: node:${NODE_VERSION}-alpine
-    ports:
-      - 9000:9000
+    build: ./docker/node/
+    image: node-scraper
     volumes:
       - ./:/app:cached
+    ports:
+      - ${PORT}:${PORT}
     working_dir: /app
     environment:
-      - NODE_ENV:${NODE_ENV}
-    command:
-      - sh
-      - -c
-      - |
-        npm install
-        npm start
+      PORT: ${PORT}
+    command: [sh, -c, "npm install & pm2-runtime process.json"]
