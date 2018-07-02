@@ -1,4 +1,5 @@
 const cheerio = require('cheerio');
+const userAgents = require('./user-agents');
 
 getLinks = (html, context, linkSelector, breakInParts, noOfParts, baseUrl) => {
   let selector = context + " " + linkSelector;
@@ -65,5 +66,15 @@ isValidLink = link => {
   return re.test(link);
 }
 
+getUserAgent = () => {
+  return getRandom(userAgents);
+}
+
+getRandom = (list) => {
+  random = list[Math.floor(Math.random()*list.length)];
+  return random;
+}
+
 exports.getLinks = getLinks;
 exports.appendInnerPage = appendInnerPage;
+exports.getUserAgent = getUserAgent;
