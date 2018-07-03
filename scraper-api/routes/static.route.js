@@ -1,9 +1,12 @@
 const express = require('express');
 const rp = require('request-promise');
-const { getLinks, appendInnerPage } = require('../common.js');
+const { getLinks, appendInnerPage, getUserAgent } = require('../common.js');
 const router = express.Router();
+
 // Get Static Route
 router.post('/get-static', async (req, res) => {
+  // Adding random useragent
+  let userAgent = getUserAgent();
 
   let url = req.body.url;
   let {context, link_selector: linkSelector, inner_page_selector: innerPageSelector, break_in_parts: breakInParts, no_of_parts: noOfParts, left_html: leftHtml, inner_feeds_scraper: innerFeedsScraper, base_url: baseUrl} = req.body.options;
@@ -26,7 +29,10 @@ router.post('/get-static', async (req, res) => {
       await rp({
         uri: url,
         method: 'GET',
-        resolveWithFullResponse: true
+        resolveWithFullResponse: true,
+        headers: {
+          'User-Agent': userAgent
+        }
       }).then(async (response) => {
         results.response = response;
       });
@@ -38,7 +44,12 @@ router.post('/get-static', async (req, res) => {
     if (innerFeedsScraper) {
       // If enabled inner fetching
       const body = await Promise.all(links.map(url =>
-        rp(url)
+        rp({
+          uri: url,
+          headers: {
+            'User-Agent': userAgent
+          }
+        })
       )).then(values => {
         return values;
       });

@@ -1,4 +1,5 @@
 const cheerio = require('cheerio');
+const userAgents = require('./user-agents');
 
 getLinks = (html, context, linkSelector, breakInParts, noOfParts, baseUrl) => {
   let selector = context + " " + linkSelector;
@@ -11,7 +12,7 @@ getLinks = (html, context, linkSelector, breakInParts, noOfParts, baseUrl) => {
         return;
       } else {
         link = $(elem).attr('href');
-        if (baseUrl != "") {
+        if (baseUrl != "" && !isValidLink(link)) {
           link = baseUrl + link;
         }
         links.push(link);
@@ -53,11 +54,27 @@ appendInnerPage = (html, selector, pages, innerPageSelector, breakInParts, noOfP
         newHtml += $.html(elem);
       }
     });
+    newHtml = newHtml.replace(/(\r\n\t|\n|\r\t)/gm,"");
     return [newHtml, leftHtml, left];
   } catch (err) {
     console.log(err);
   }
 }
 
+isValidLink = link => {
+  let re = new RegExp("^(http|https)://", "i");
+  return re.test(link);
+}
+
+getUserAgent = () => {
+  return getRandom(userAgents);
+}
+
+getRandom = (list) => {
+  random = list[Math.floor(Math.random()*list.length)];
+  return random;
+}
+
 exports.getLinks = getLinks;
 exports.appendInnerPage = appendInnerPage;
+exports.getUserAgent = getUserAgent;

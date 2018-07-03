@@ -1,6 +1,6 @@
 const express = require('express');
 const Nightmare = require('nightmare')
-const { getLinks, appendInnerPage } = require('../common.js');
+const { getLinks, appendInnerPage, getUserAgent } = require('../common.js');
 const router = express.Router();
 
 const config = {
@@ -12,6 +12,8 @@ const config = {
 
 // Get Dynamic Route
 router.post('/get-dynamic', async (req, res) => {
+  // Adding random useragent
+  let userAgent = getUserAgent();
 
   let url = req.body.url;
   let {context, link_selector: linkSelector, inner_page_selector: innerPageSelector, break_in_parts: breakInParts, no_of_parts: noOfParts, left_html: leftHtml, inner_feeds_scraper: innerFeedsScraper, base_url: baseUrl} = req.body.options;
@@ -33,6 +35,7 @@ router.post('/get-dynamic', async (req, res) => {
       let nightmare = Nightmare(config);
       await nightmare
         .goto(url)
+        .useragent(userAgent)
         .wait('body')
         .evaluate(() => document.querySelector('body').innerHTML)
         .end()
@@ -53,6 +56,7 @@ router.post('/get-dynamic', async (req, res) => {
         let nightmare = Nightmare(config);
         await nightmare.goto(url)
           .wait('body')
+          .useragent(userAgent)
           .evaluate(() => document.querySelector('body').innerHTML)
           .then((response) => {
             body.push(response);
