@@ -45,12 +45,12 @@ appendInnerPage = (html, selector, pages, innerPageSelector, breakInParts, noOfP
         left += 1;
       } else {
         /* Append the inner page content to selector elements like -
-          <affiliatesconnect>inner page selected content</affiliatesconnect>
+          <crawler>inner page selected content</crawler>
           to each of the elements.
          */
         const $$ = cheerio.load(pages[i]);
         $$('script').remove();
-        $(this).append('<affiliatesconnect>' + $$.html(innerPageSelector) + '</affiliatesconnect>');
+        $(this).append('<crawler>' + $$.html(innerPageSelector) + '</crawler>');
         newHtml += $.html(elem);
       }
     });
