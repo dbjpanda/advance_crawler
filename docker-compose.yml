@@ -7,7 +7,7 @@ services:
     volumes:
       - ./code/node_crawler:/app:cached
     ports:
-      - ${NODE_CONTAINER_PORT}:${APP_PORT}
+      - ${APP_PORT}:${APP_PORT}
     working_dir: /app
     environment:
       - NODE_ENV:${NODE_ENV}
