@@ -15,4 +15,5 @@ services:
       - NIGHTMARE_SHOW:${NIGHTMARE_SHOW}
       - NIGHTMARE_IMAGES:${NIGHTMARE_IMAGES}
       - APP_PORT:${APP_PORT}
+      - NODE_CONTAINER_PORT:${NODE_CONTAINER_PORT}
     command: [sh, -c, "npm install && pm2-runtime process.json"]
