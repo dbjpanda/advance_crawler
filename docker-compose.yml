@@ -2,14 +2,17 @@ version: "3"
 
 services:
   node:
-    container_name: node
+    container_name: node_crawler
     build: ./docker/node/
-    image: node-scraper
     volumes:
-      - ./:/app:cached
+      - ./code/node_crawler:/app:cached
     ports:
-      - ${PORT}:${PORT}
+      - ${NODE_CONTAINER_PORT}:${APP_PORT}
     working_dir: /app
     environment:
-      PORT: ${PORT}
+      - NODE_ENV:${NODE_ENV}
+      - PROCESS_TYPE:${PROCESS_TYPE}
+      - NIGHTMARE_SHOW:${NIGHTMARE_SHOW}
+      - NIGHTMARE_IMAGES:${NIGHTMARE_IMAGES}
+      - APP_PORT:${APP_PORT}
     command: [sh, -c, "npm install && pm2-runtime process.json"]
