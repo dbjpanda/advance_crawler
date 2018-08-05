@@ -16,7 +16,15 @@ router.post('/get-dynamic', async (req, res) => {
   let userAgent = getUserAgent();
 
   let url = req.body.url;
-  let {context, link_selector: linkSelector, inner_page_selector: innerPageSelector, break_in_parts: breakInParts, no_of_parts: noOfParts, left_html: leftHtml, inner_feeds_scraper: innerFeedsScraper, base_url: baseUrl} = req.body.options;
+  let {context, link_selector: linkSelector, inner_page_selector: innerPageSelector, break_in_parts: breakInParts, no_of_parts: noOfParts, left_html: leftHtml, inner_feeds_scraper: innerFeedsScraper, base_url: baseUrl, proxy: proxy} = req.body.options;
+
+  if (proxy) {
+    config.switches = {};
+    let proxySplit = proxy.split("://");
+
+    config.switches[proxySplit[0]] = proxySplit[1];
+  }
+  console.log(config);
 
   let results = {
     'status': '',
